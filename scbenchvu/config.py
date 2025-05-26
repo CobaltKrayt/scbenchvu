@@ -1,14 +1,11 @@
 from pathlib import Path
 
 from dotenv import load_dotenv
-from loguru import logger
 
 # Load environment variables from .env file if it exists
 load_dotenv()
 
-# Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
-logger.info(f"PROJ_ROOT path is: {PROJ_ROOT}")
 
 DATA_DIR = PROJ_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
@@ -21,12 +18,24 @@ MODELS_DIR = PROJ_ROOT / "models"
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
-# If tqdm is installed, configure loguru with tqdm.write
-# https://github.com/Delgan/loguru/issues/135
-try:
-    from tqdm import tqdm
+V1_CODES = [f"TSP{i}" for i in range(1, 16)]
+V2_CODES = ["TSP17", "TSP19", "TSP20", "TSP21", "TSP25", "TSP26", "TSP27", "TSP28", "TSP30"]
 
-    logger.remove(0)
-    logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
-except ModuleNotFoundError:
-    pass
+SCGPT_HYPERPARAMS ={
+    "seed": 42,                        
+    "dataset_name": "ovary_v2",        
+    "load_model": MODELS_DIR / "scGPT_human",
+    "do_train": True,                  
+    "mask_ratio": 0.0,                 
+    "n_bins": 10,                      
+    "epochs": 2,                      
+    "batch_size": 16,                  
+    "lr": 1e-4,                        
+    "layer_size": 128,                 
+    "nlayers": 4,                      
+    "nhead": 4,                        
+    "dropout": 0.2,                    
+    "save_eval_interval": 2,           
+    "amp": True,                       
+    "freeze": False,                   
+}

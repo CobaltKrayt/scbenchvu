@@ -4,7 +4,12 @@
 
 PROJECT_NAME = scbenchvu
 PYTHON_VERSION = 3.10.12
-PYTHON_INTERPRETER = python
+PYTHON_INTERPRETER := $(shell command -v python3 2>/dev/null || command -v python)
+
+ifeq ($(PYTHON_INTERPRETER),)
+$(error No Python interpreter found. Please install python3 or python.)
+endif
+
 
 #################################################################################
 # COMMANDS                                                                      #
@@ -46,6 +51,7 @@ format:
 ## Set up Python interpreter environment
 .PHONY: create_environment
 create_environment:
+	@test -w . || { echo ">>> Permission denied in current directory"; exit 1; }
 	$(PYTHON_INTERPRETER) -m venv .venv
 	@echo ">>> Activate with: source .venv/bin/activate"
 	
