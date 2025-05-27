@@ -6,6 +6,14 @@
 
 Transcriptomics part of LLMs in Bioinformatics
 
+## scGPT Requirements
+
+1. cuda 12.1
+2. torch 2.3.0
+3. torchtext 18.0
+4. flash-attn 1.0.4
+5. a lot of patience
+
 ## Project Organization
 
 ```
