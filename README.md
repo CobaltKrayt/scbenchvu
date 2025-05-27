@@ -7,6 +7,8 @@
 Transcriptomics part of LLMs in Bioinformatics
 
 ## scGPT Special Requirements
+Make sure to drop your desired scGPT checkpoint in the 'models' directory.
+
 I was able to start finetuning scGPT on an RTX 3080 after using specific versions of the following packages:
 
 1. cuda 12.1
