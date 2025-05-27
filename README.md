@@ -6,13 +6,13 @@
 
 Transcriptomics part of LLMs in Bioinformatics
 
-## scGPT Requirements
+## scGPT Special Requirements
+I was able to start finetuning scGPT on an RTX 3080 after using specific versions of the following packages:
 
 1. cuda 12.1
 2. torch 2.3.0
 3. torchtext 18.0
 4. flash-attn 1.0.4
-5. a lot of patience
 
 ## Project Organization
 
